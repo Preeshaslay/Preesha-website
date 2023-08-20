@@ -1,0 +1,63 @@
+import tkinter
+from tkinter import messagebox
+window=tkinter.Tk()
+window.geometry("500x500")
+window.configure(bg="#FE9CCF")
+window.title("Login Page")
+rrrr=tkinter.Label(window,text="Welcome to my app!",font=("algerian",35),bg="#9CFDFF",fg="#D99FFA")
+rrrr.pack()
+jj=tkinter.Label(window,text="What is your User ID?",font=("Caveat",25),bg="#CF6BF7",fg="#FF00A6")
+jj.pack(pady=5)
+rr1=tkinter.Entry(window,width=15,font=("algerian",20),bg="#9CFDFF",fg="#D99FFA")
+rr1.pack()
+y=tkinter.Label(window,text="What is your Password?",font=("algerian",20),bg="#9CFDFF",fg="#D99FFA")
+y.pack(pady=5)
+rr2=tkinter.Entry(window,width=15,font=("Caveat",20),bg="#CF6BF7",fg="#FF00A6")
+rr2.pack()
+def Check():
+      file=open("credentials.txt","r")
+      Line=file.read().splitlines()
+      if rr1.get()==Line[0] and rr2.get()==Line[1]:
+            messagebox.showinfo("New Message","Login successful!!!!🙂")
+            Submit()
+      else:
+            messagebox.showwarning("New Message","Login denied please check your credentials!")
+      
+def Submit():
+
+  window1=tkinter.Tk()
+  window1.geometry("5000x5000")
+  window1.configure(bg="#DA9CFA")
+  window1.title("Home Page")
+  rr=tkinter.Label(window1,text="Welcome to your Home Page This is your Simple Interest Calculator down below!!!",font=("algerian",30),bg="#9CFDFF",fg="#D99FFA")
+  rr.pack(pady=20)
+  p=tkinter.Label(window1,text="Principal :  ",font=("algerian",30),bg="#FF1BF5",fg="White")
+  p.pack(pady=10)
+  p1=tkinter.Entry(window1,width=15,font=("algerian",20),bg="#FF1BF5",fg="White")
+  p1.pack(pady=10)
+  r=tkinter.Label(window1,text="Rate : ",font=("algerian",30),bg="#FF1BF5",fg="White")
+  r.pack(pady=10)
+  r1=tkinter.Entry(window1,width=15,font=("algerian",20),bg="#FF1BF5",fg="White")
+  r1.pack(pady=10)
+  t=tkinter.Label(window1,text="Time : ",font=("algerian",30),bg="#FF1BF5",fg="White")
+  t.pack(pady=10)
+  t1=tkinter.Entry(window1,width=15,font=("algerian",20),bg="#FF1BF5",fg="White")
+  t1.pack(pady=10)
+  def Logout():
+        window1.destroy()
+  def Result():
+        p2=p1.get()
+        p2=float(p2)
+        r2=r1.get()
+        r2=float(r2)
+        t2=t1.get()
+        t2=float(t2)
+        cal=(r2*p2*t2)/100
+        s1=tkinter.Label(window1,text=("The Simple Interest is : "+str(cal)),font=("algerian",20),bg="#FF1BF5",fg="White")
+        s1.pack(pady=10)
+  button2=tkinter.Button(window1,text="Calculate",font=("Caveat",30),bg="#8E44AD",fg="#E8C1E5",command=Result)
+  button2.pack(pady=5)
+  button3=tkinter.Button(window1,text="Log out",font=("Caveat",30),bg="#8E44AD",fg="#E8C1E5",command=Logout)
+  button3.pack(pady=5)
+button1=tkinter.Button(window,text="Submit",font=("Caveat",30),bg="#8E44AD",fg="#E8C1E5",command=Check)
+button1.pack(pady=5)
